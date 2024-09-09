@@ -1,5 +1,5 @@
 ---
 deployment:
 tasks:
-- export DEPLOYPATH=/home/usercpanel/public_html/git
+- export DEPLOYPATH=/home/agsn1147/repositories/ag-solutions/git
 - /bin/cp -r * $DEPLOYPATH
