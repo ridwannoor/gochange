@@ -1,0 +1,5 @@
+{
+    "intelephense.environment.phpVersion": "7.2.5",
+    "php.executablePath": "",
+    "bladeSpacer.enableTwig": false,
+}
