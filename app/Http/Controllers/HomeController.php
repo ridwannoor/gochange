@@ -131,8 +131,8 @@ class HomeController extends Controller
         $sliders = Slider::all();
         $portfolios = Portfolio::all();
         $posts = Post::withCount('categorypost')->paginate(8);
-
-        return view('front.comingsoon', compact('sliders', 'posts', 'judul', 'generals', 'services', 'testimonis', 'sponsors', 'portfolios'));
+        $categories = Categoryproduct::with('subcategory', 'products')->get();
+        return view('front.comingsoon', compact('sliders', 'posts', 'judul', 'generals', 'categories', 'services', 'testimonis', 'sponsors', 'portfolios'));
     }
 
     public function about()
@@ -145,8 +145,8 @@ class HomeController extends Controller
         $sliders = Slider::all();
         $portfolios = Portfolio::all();
         $posts = Post::withCount('categorypost')->paginate(8);
-
-        return view('front.about', compact('sliders', 'posts', 'generals', 'services', 'testimonis', 'sponsors', 'judul', 'portfolios'));
+        $categories = Categoryproduct::with('subcategory', 'products')->get();
+        return view('front.about', compact('sliders', 'posts', 'generals', 'services', 'testimonis', 'categories', 'sponsors', 'judul', 'portfolios'));
     }
 
     public function postdetail($id)
