@@ -1,9 +1,9 @@
 ---
 deployment:
 tasks:
-- export DEPLOYPATH=/home/agsn1147/repositories/ag-solutions/git
+- export DEPLOYPATH=/home/agsn1147/public_html/git
 - /bin/cp -r * $DEPLOYPATH
- - /bin/cp -r ./public/* $DEPLOYPATH/public_html/
+#  - /bin/cp -r ./public/* $DEPLOYPATH/public_html/
 # - /bin/cp -r ./public/* $DEPLOYPATH/public_html/
 #     - /bin/cp ./public/back/*.js $DEPLOYPATH/public_html/js
 #     - /bin/cp ./public/css/*.css $DEPLOYPATH/public_html/css
