@@ -1,0 +1,24 @@
+{
+    "name": "alfredbez/oxid-dump-autoload",
+    "authors": [
+        {
+            "name": "Alfred Bez",
+            "email": "alfred.bez@googlemail.com"
+        }
+    ],
+    "require": {
+        "league/climate": "^3.5",
+        "oxid-esales/oxideshop-ce": "^6.0",
+        "oxid-esales/oxideshop-unified-namespace-generator": "^2.0"
+    },
+    "bin": ["oxid-dump-autoload"],
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "autoload": {
+        "psr-4": {
+          "AlfredBez\\OxidDumpAutoload\\": "src/",
+          "AlfredBez\\OxidDumpAutoload\\Tests\\": "tests/"
+        }
+    }
+}
