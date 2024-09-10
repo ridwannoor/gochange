@@ -55,6 +55,7 @@ class HomeController extends Controller
         $categories = Categoryproduct::with('subcategory', 'products')->get();
         $products = Product::with('productdetails', 'categoryproduct', 'subcategory')->get();
         $banners = Banner::all();
+
         // $newskey = env('NEWS_API_KEY');
         // $response = Http::get('https://newsapi.org/v2/everything?q=tesla&from=2024-01-19&pageSize=3&SortBy=publishedAt&apiKey=96151bb9f1d3472e849e74f7e0124b91');
         // $news = $response->json();

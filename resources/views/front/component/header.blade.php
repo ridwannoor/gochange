@@ -61,8 +61,7 @@
                                 class="fea icon-sm"></i></a></li>
                     <li class="list-inline-item mr-2"><a href="{{ $generals->facebook }}" class="text-dark"><i
                                 data-feather="facebook" class="fea icon-sm"></i></a></li>
-                    {{-- <li class="list-inline-item mr-2"><a href="{{ $generals->linkedin }}" class="text-dark"><i
-                                data-feather="linkedin" class="fea icon-sm"></i></a></li> --}}
+                   
                     <li class="list-inline-item mr-2"><a href="{{ $generals->instagram }}" class="text-dark"><i
                                 data-feather="instagram" class="fea icon-sm"></i></a></li>
                     <li class="list-inline-item"><a href="{{ $generals->youtube }}" class="text-dark"><i
