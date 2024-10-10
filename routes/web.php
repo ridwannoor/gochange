@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+$namespace = '\crocodicstudio\dokularavel\Controllers';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Auth::routes(['register' => false]);
+Auth::routes();
+
+// Route::group(['middleware' => ['\Illuminate\Session\Middleware\StartSession'], 'prefix' => config('dokularavel.PAYMENT_PATH'), 'namespace' => $namespace], function () {
+//     Route::get('/', ['uses' => 'DokuController@index', 'as' => 'DokuController.index']);
+//     Route::post('check-status', ['uses' => 'DokuController@checkStatus', 'as' => 'DokuController.checkStatus']);
+//     Route::post('notify/{code}', ['uses' => 'DokuController@notify', 'as' => 'DokuController.notify']);
+//     Route::get('waiting-transfer', ['uses' => 'DokuController@waitingTransfer', 'as' => 'DokuController.waitingTransfer']);
+//     Route::get('paycode', ['uses' => 'DokuController@paycode', 'as' => 'DokuController.paycode']);
+//     Route::get('finish', ['uses' => 'DokuController@finish', 'as' => 'DokuController.finish']);
+//     Route::post('pay', ['uses' => 'DokuController@pay', 'as' => 'DokuController.pay']);
+//     Route::get('debug', ['uses' => 'DokuController@debug', 'as' => 'DokuController.debug']);
+//     Route::post('status/{invoice_no}', ['uses' => 'DokuController@checkPaymentStatus', 'as' => 'DokuController.checkPaymentStatus']);
+// });
+
 
 Route::get('/admin/ipaddress', 'Admin\Router\IpaddressController@index')->name('ipaddress');
 Route::get('/admin/setting', 'Admin\Router\SettingController@index')->name('setting');
@@ -25,13 +39,30 @@ Route::get('/admin/addrouter', 'Admin\Router\SettingController@addrouter')->name
 Route::post('/admin/router/store', 'Admin\Router\SettingController@store')->name('addrouter.store');
 //FRONT 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/cara-order', 'HomeController@caraorder')->name('cara-order');
+Route::get('/syarat-ketentuan', 'HomeController@syaratketentuan')->name('syarat-ketentuan');
+Route::get('/faq', 'HomeController@faq')->name('faq');
+Route::get('/blog', 'HomeController@post')->name('post');
+
+Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+Route::get('/saldo', 'User\SaldoController@saldo')->name('saldo');
+Route::get('/vcc', 'User\SaldoController@vcc')->name('vcc');
+Route::get('/riwayat', 'User\SaldoController@riwayat')->name('riwayat');
+Route::get('/payment', 'User\SaldoController@checkout')->name('payment');
+
+// Route::get('/login', )
+// Route::get('/login', 'Auth\LoginController')->name('login');
+Route::get('admin/login', 'Auth\AdminAuthController@getLogin')->name('admin.login');
+Route::post('admin/login', 'Auth\AdminAuthController@postLogin');
+
+
 Route::get('/partner', 'HomeController@partner')->name('partner');
 Route::get('/comingsoon', 'HomeController@comingsoon')->name('comingsoon');
 Route::get('/contact', 'HomeController@about')->name('about');
 Route::post('/contact/save', 'HomeController@contactsave')->name('contactsave');
 Route::get('/portfolio', 'HomeController@portfolio')->name('portfolio');
 Route::get('/portfolio/detail/{id}', 'HomeController@portfoliodetail')->name('portfoliodetail');
-Route::get('/blog', 'HomeController@post')->name('post');
+
 Route::get('/blog/detail/{id}', 'HomeController@postdetail')->name('postdetail');
 // Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('/shop', 'ShopController@index')->name('shop');

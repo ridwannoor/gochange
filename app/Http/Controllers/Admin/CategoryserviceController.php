@@ -13,7 +13,7 @@ class CategoryserviceController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
         $judul = 'Category service';
@@ -43,21 +43,18 @@ class CategoryserviceController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->title ; 
-        $spons = Categoryservice::where('title',$name)->first();
+        $name = $request->title;
+        $spons = Categoryservice::where('title', $name)->first();
 
-        if ($spons) {           
-            return redirect('/admin/categoryservice/create')->with('message','Data Sudah Ada');
-            
+        if ($spons) {
+            return redirect('/admin/categoryservice/create')->with('message', 'Data Sudah Ada');
+        } else {
+            $data = new Categoryservice();
+            $data->title = $request->title;
+            $data->deskripsi = $request->deskripsi;
+            $data->save();
+            return redirect('/admin/categoryservice')->with('success', 'Data Berhasil di Simpan');
         }
-        else{
-                $data = new Categoryservice();
-                $data->title = $request->title;
-                $data->deskripsi = $request->deskripsi;
-                $data->save();           
-                return redirect('/admin/categoryservice')->with('success','Data Berhasil di Simpan');
-           
-            }       
     }
 
     /**
@@ -97,12 +94,11 @@ class CategoryserviceController extends Controller
      */
     public function update(Request $request)
     {
-            $data = Categoryservice::where('id','=', $request->id)->first();
-            $data->title = $request->title;
-            $data->deskripsi = $request->deskripsi;
-            $data->save();           
-            return redirect('/admin/categoryservice')->with('success','Data Berhasil di Simpan');
-     
+        $data = Categoryservice::where('id', '=', $request->id)->first();
+        $data->title = $request->title;
+        $data->deskripsi = $request->deskripsi;
+        $data->save();
+        return redirect('/admin/categoryservice')->with('success', 'Data Berhasil di Simpan');
     }
 
     /**
@@ -117,5 +113,4 @@ class CategoryserviceController extends Controller
         $data->delete($data);
         return redirect('/admin/categoryservice')->with('success', 'Data Berhasil Dihapus');
     }
-
 }

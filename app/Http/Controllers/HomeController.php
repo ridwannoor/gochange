@@ -43,7 +43,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $judul = "Homepage";
+        $title = "Homepage";
         $generals = General::find(1);
         $services = Service::all();
         $sponsors = Sponsor::all();
@@ -56,6 +56,8 @@ class HomeController extends Controller
         $products = Product::with('productdetails', 'categoryproduct', 'subcategory')->get();
         $banners = Banner::all();
 
+        // $data =  json_decode(file_get_contents('http://kurs.dropsugar.com/rates/bca.json'));
+
         // $newskey = env('NEWS_API_KEY');
         // $response = Http::get('https://newsapi.org/v2/everything?q=tesla&from=2024-01-19&pageSize=3&SortBy=publishedAt&apiKey=96151bb9f1d3472e849e74f7e0124b91');
         // $news = $response->json();
@@ -64,8 +66,17 @@ class HomeController extends Controller
         // $newsdatas = $newsdata::paginate(3);
         // GET https://newsapi.org/v2/top-headlines/sources?category=businessapiKey=API_KEY
 
-        return view('front.index', compact('sliders',  'posts', 'generals', 'galleries', 'services', 'testimonis', 'sponsors', 'portfolios', 'judul', 'banners', 'categories', 'products'));
+        return view('front.homepage.index', compact('sliders',  'posts', 'generals', 'galleries', 'services', 'testimonis', 'sponsors', 'portfolios', 'title', 'banners', 'categories', 'products'));
     }
+
+    public function dashboard()
+    {
+        $title = "Dashboard";
+        $generals = General::find(1);
+        return view('front.account.dashboard', compact('generals', 'title'));
+    }
+
+
 
     public function portfolio()
     {
@@ -110,7 +121,7 @@ class HomeController extends Controller
 
     public function post()
     {
-        $judul = " Blog";
+        $title = " Blog";
         $generals = General::find(1);
         $services = Service::all();
         $sponsors = Sponsor::all();
@@ -119,7 +130,7 @@ class HomeController extends Controller
         $portfolios = Portfolio::all();
         $posts = Post::withCount('categorypost')->paginate(8);
 
-        return view('front.blog', compact('sliders', 'posts', 'judul', 'generals', 'services', 'testimonis', 'sponsors', 'portfolios'));
+        return view('front.homepage.blog', compact('sliders', 'posts', 'title', 'generals', 'services', 'testimonis', 'sponsors', 'portfolios'));
     }
 
     public function comingsoon()
@@ -206,5 +217,44 @@ class HomeController extends Controller
         // $posts = Post::find($id);
 
         return redirect('/contact')->with('success', 'Data Berhasil di Simpan');
+    }
+
+    public function caraorder()
+    {
+        $generals = General::find(1);
+        $services = Service::all();
+        $sponsors = Sponsor::all();
+        $testimonis = Testimoni::all();
+        $sliders = Slider::all();
+        $portfolios = Portfolio::all();
+        $posts = Post::all();
+        $title = "Cara Order";
+        return view('front.homepage.cara-order', compact('sliders', 'title', 'posts', 'generals', 'services', 'testimonis', 'sponsors', 'portfolios'));
+    }
+
+    public function syaratketentuan()
+    {
+        $generals = General::find(1);
+        $services = Service::all();
+        $sponsors = Sponsor::all();
+        $testimonis = Testimoni::all();
+        $sliders = Slider::all();
+        $portfolios = Portfolio::all();
+        $posts = Post::all();
+        $title = "Syarat & Ketentuan";
+        return view('front.homepage.syarat-ketentuan', compact('sliders', 'title', 'posts', 'generals', 'services', 'testimonis', 'sponsors', 'portfolios'));
+    }
+
+    public function faq()
+    {
+        $generals = General::find(1);
+        $services = Service::all();
+        $sponsors = Sponsor::all();
+        $testimonis = Testimoni::all();
+        $sliders = Slider::all();
+        $portfolios = Portfolio::all();
+        $posts = Post::all();
+        $title = "FAQ";
+        return view('front.homepage.faq', compact('sliders', 'title', 'posts', 'generals', 'services', 'testimonis', 'sponsors', 'portfolios'));
     }
 }

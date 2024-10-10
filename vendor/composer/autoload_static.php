@@ -46,6 +46,10 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         array (
             'voku\\' => 5,
         ),
+        'c' => 
+        array (
+            'crocodicstudio\\dokularavel\\' => 27,
+        ),
         'W' => 
         array (
             'Whoops\\' => 7,
@@ -178,6 +182,7 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\' => 16,
             'DeepCopy\\' => 9,
+            'DOKU\\' => 5,
         ),
         'C' => 
         array (
@@ -212,6 +217,10 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'crocodicstudio\\dokularavel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/crocodicstudio/dokularavel/src',
         ),
         'Whoops\\' => 
         array (
@@ -566,6 +575,10 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'DOKU\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
@@ -662,6 +675,7 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
     );
 
     public static $classMap = array (
+        'AdminTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AdminTableSeeder.php',
         'AlfredBez\\OxidDumpAutoload\\AliasBuilder' => __DIR__ . '/..' . '/alfredbez/oxid-dump-autoload/src/AliasBuilder.php',
         'AlfredBez\\OxidDumpAutoload\\AliasDumper' => __DIR__ . '/..' . '/alfredbez/oxid-dump-autoload/src/AliasDumper.php',
         'AlfredBez\\OxidDumpAutoload\\Chain\\MetadataChain' => __DIR__ . '/..' . '/alfredbez/oxid-dump-autoload/src/Chain/MetadataChain.php',
@@ -711,6 +725,7 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'App\\Http\\Controllers\\Admin\\TeamController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TeamController.php',
         'App\\Http\\Controllers\\Admin\\TestimoniController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TestimoniController.php',
         'App\\Http\\Controllers\\Admin\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VideoController.php',
+        'App\\Http\\Controllers\\Auth\\AdminAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AdminAuthController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -720,6 +735,7 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShopController.php',
+        'App\\Http\\Controllers\\User\\SaldoController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/SaldoController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -727,8 +743,10 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
+        'App\\Http\\Middleware\\UserAccess' => __DIR__ . '/../..' . '/app/Http/Middleware/UserAccess.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Accountbank' => __DIR__ . '/../..' . '/app/Models/Accountbank.php',
+        'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\Badan' => __DIR__ . '/../..' . '/app/Models/Badan.php',
         'App\\Models\\Bank' => __DIR__ . '/../..' . '/app/Models/Bank.php',
         'App\\Models\\Banner' => __DIR__ . '/../..' . '/app/Models/Banner.php',
@@ -763,6 +781,11 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'App\\Models\\Team' => __DIR__ . '/../..' . '/app/Models/Team.php',
         'App\\Models\\Testimoni' => __DIR__ . '/../..' . '/app/Models/Testimoni.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\User\\Isisaldo' => __DIR__ . '/../..' . '/app/Models/User/Isisaldo.php',
+        'App\\Models\\User\\Jenissaldo' => __DIR__ . '/../..' . '/app/Models/User/Jenissaldo.php',
+        'App\\Models\\User\\Jenisvcc' => __DIR__ . '/../..' . '/app/Models/User/Jenisvcc.php',
+        'App\\Models\\User\\Metodebayar' => __DIR__ . '/../..' . '/app/Models/User/Metodebayar.php',
+        'App\\Models\\User\\Vcc' => __DIR__ . '/../..' . '/app/Models/User/Vcc.php',
         'App\\Models\\Video' => __DIR__ . '/../..' . '/app/Models/Video.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -1210,6 +1233,13 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'Cron\\HoursField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/HoursField.php',
         'Cron\\MinutesField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
+        'DOKU\\Client' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Client.php',
+        'DOKU\\Common\\Config' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Common/Config.php',
+        'DOKU\\Common\\PaycodeGenerator' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Common/PaycodeGenerator.php',
+        'DOKU\\Common\\Utils' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Common/Utils.php',
+        'DOKU\\Service\\DokuVa' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Service/DokuVa.php',
+        'DOKU\\Service\\MandiriVa' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Service/MandiriVa.php',
+        'DOKU\\Service\\Notification' => __DIR__ . '/..' . '/doku/jokul-php-library/src/DOKU/Service/Notification.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -6928,6 +6958,9 @@ class ComposerStaticInitff121fa9c1b81623e8a5d9b4159d27d6
         'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
         'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
         'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
+        'crocodicstudio\\dokularavel\\Controllers\\Controller' => __DIR__ . '/..' . '/crocodicstudio/dokularavel/src/Controllers/Controller.php',
+        'crocodicstudio\\dokularavel\\Controllers\\DokuController' => __DIR__ . '/..' . '/crocodicstudio/dokularavel/src/Controllers/DokuController.php',
+        'crocodicstudio\\dokularavel\\DokuLaravelServiceProvider' => __DIR__ . '/..' . '/crocodicstudio/dokularavel/src/DokuLaravelServiceProvider.php',
         'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
         'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',

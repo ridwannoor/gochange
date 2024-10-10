@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '04967bf192b76c0cb4f98883751c0ead7d10bfb6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -142,6 +142,15 @@
                 0 => '*',
             ),
         ),
+        'crocodicstudio/dokularavel' => array(
+            'pretty_version' => 'v1.6.6',
+            'version' => '1.6.6.0',
+            'reference' => 'ac23343cc4baa20ad479dbbfb7427dbe4bfae082',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../crocodicstudio/dokularavel',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'davedevelopment/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -217,6 +226,15 @@
             'reference' => 'c268e882d4dbdd85e36e4ad69e02dc284f89d229',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/lexer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'doku/jokul-php-library' => array(
+            'pretty_version' => '2.0.0',
+            'version' => '2.0.0.0',
+            'reference' => 'fafccb5eb1e91f1149bc1fc5d29864ce6cb6b44f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doku/jokul-php-library',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -545,9 +563,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '04967bf192b76c0cb4f98883751c0ead7d10bfb6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

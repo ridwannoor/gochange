@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d2902d25dc3a6c9c1550241f9c514a4",
+    "content-hash": "7a1d8f7d908bf9cc4e12d54619f54c67",
     "packages": [
         {
             "name": "alfredbez/oxid-dump-autoload",
@@ -1006,6 +1006,38 @@
             "time": "2024-05-06T16:37:16+00:00"
         },
         {
+            "name": "crocodicstudio/dokularavel",
+            "version": "v1.6.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crocodic-studio/dokularavel.git",
+                "reference": "ac23343cc4baa20ad479dbbfb7427dbe4bfae082"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crocodic-studio/dokularavel/zipball/ac23343cc4baa20ad479dbbfb7427dbe4bfae082",
+                "reference": "ac23343cc4baa20ad479dbbfb7427dbe4bfae082",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "crocodicstudio\\dokularavel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This package is DOKU Payment Gateway Library for Laravel",
+            "support": {
+                "issues": "https://github.com/crocodic-studio/dokularavel/issues",
+                "source": "https://github.com/crocodic-studio/dokularavel/tree/master"
+            },
+            "abandoned": true,
+            "time": "2017-09-22T03:13:03+00:00"
+        },
+        {
             "name": "doctrine/cache",
             "version": "2.2.0",
             "source": {
@@ -1582,6 +1614,42 @@
                 }
             ],
             "time": "2022-02-28T11:07:21+00:00"
+        },
+        {
+            "name": "doku/jokul-php-library",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-php-library.git",
+                "reference": "fafccb5eb1e91f1149bc1fc5d29864ce6cb6b44f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PTNUSASATUINTIARTHA-DOKU/jokul-php-library/zipball/fafccb5eb1e91f1149bc1fc5d29864ce6cb6b44f",
+                "reference": "fafccb5eb1e91f1149bc1fc5d29864ce6cb6b44f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DOKU\\": "src/DOKU/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Devex Dev",
+                    "email": "devexdev@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-php-library/issues",
+                "source": "https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-php-library/tree/2.0.0"
+            },
+            "time": "2020-11-13T04:01:20+00:00"
         },
         {
             "name": "dompdf/dompdf",

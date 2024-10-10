@@ -12,6 +12,8 @@
         "alfredbez/oxid-dump-autoload": "*",
         "barryvdh/laravel-dompdf": "^1.0",
         "ben-menking/routeros-api": "^1.6",
+        "crocodicstudio/dokularavel": "*",
+        "doku/jokul-php-library": "*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.8",
