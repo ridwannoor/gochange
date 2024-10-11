@@ -10,21 +10,17 @@ use App\Models\User\Jenissaldo;
 use App\Models\User\Isisaldo;
 use Illuminate\Support\Str;
 // use crocodicstudio\dokularavel;
-use DOKU;
+use Illuminate\Support\Facades\Auth;
+// use DOKU;
+use Xendit\Xendit;
 
 class SaldoController extends Controller
 {
 
     public function __construct()
     {
-        // Instantiate class
-        $DOKUClient = new DOKU\Client;
-        // Set your Client ID
-        $DOKUClient->setClientID('BRN-0219-1728442688849');
-        // Set your Shared Key
-        $DOKUClient->setSharedKey('SK-aP5mNhRj7XGCwSIpWgky');
-        // Call this function for production use
-        $DOKUClient->isProduction(false);
+        Xendit::setApiKey("xnd_development_V6Z2wbBWf7g4av92RAIF6jz1M4ZhbQD34SZ8O8aMGnVaUN4pVW5HUJB2mNUm8g");
+        // Xendit::setApiKey(config('xnd_development_V6Z2wbBWf7g4av92RAIF6jz1M4ZhbQD34SZ8O8aMGnVaUN4pVW5HUJB2mNUm8g'));
     }
     /**
      * Display a listing of the resource.
@@ -59,122 +55,45 @@ class SaldoController extends Controller
     public function checkout(Request $request)
     {
 
-        //Setup Parameter VA
-        $paramsVa = array(
-            'customerEmail' => $arr["email"],
-            'customerName' => $arr["customerName"],
-            'amount' => $arr["amount"],
-            'invoiceNumber' =>  $arr["invoiceNumber"],
-            'expiryTime' => $arr["expiredTime"],
-            'info1' => $arr["info1"],
-            'info2' => $arr["info2"],
-            'info3' => $arr["info3"],
-            'reusableStatus' => $arr["reusableStatus"]
-        );
+        $params = [
+            'external_id' => (string) Str::uuid(),
+            'payer_email' => $request->customer_email,
+            // 'usd ' => $request->usd,
+            // 'idr' => $request->idr,
+            'amount' => $request->idr,
+            'redirect_url' => 'localhost::8000'
+        ];
+        // dd($params);
 
-        //Setup Parameter CC
-        $order_data = array();
-        $order_data[] = array('price' => $arr["amount"], 'quantity' => '1', 'name' => 'item1', 'sku' => '123457890', 'category' => 'php-library', 'url' => 'https://www.doku.com/');
-        $paramsCc = array(
-            'customerId' => 'ID-123456',
-            'customerEmail' => $arr["email"],
-            'customerName' => $arr["customerName"],
-            'phone' => $arr["phoneNumber"],
-            'country' => 'ID', //'ID' in english
-            'invoiceNumber' => $arr["invoiceNumber"],
-            'amount' => $arr["amount"],
-            'lineItems' => $order_data,
-            'urlFail' => 'https://www.google.com',
-            'urlSuccess' => 'https://www.doku.com',
-            'language' => "ID", //'ID' in english
-            'backgroundColor' => '',
-            'fontColor' => '',
-            'buttonBackgroundColor' => '',
-            'address' => $arr["address"],
-            'buttonFontColor' => ''
-        );
+        $createInvoice = \Xendit\Invoice::create($params);
+        // dd($createInvoice);
+        //Simpan ke database
+        $Isisalddos = new Isisaldo;
+        $Isisalddos->external_id = $params['external_id'];
+        $Isisalddos->status = 'Pending';
+        $Isisalddos->checkout_link = $createInvoice['invoice_url'];
+        $Isisalddos->usd = $request['usd'];
+        // $Isisalddos->idr = $request['idr'];
+        $Isisalddos->jenissaldo_id = $request['jenissaldo_id'];
+        $Isisalddos->user_id = $request['user_id'];
+        $Isisalddos->idr = $params['amount'];
+        $Isisalddos->save();
 
-        //Setup Parameter Emoney
-        $invoiceNumber =  $arr["invoiceNumber"];
-        $ovoId = '081211111111';
-        $checkSum = hash('sha256', $arr["amount"] . $arr["clientId"] . $invoiceNumber . $ovoId . $arr["sharedKey"]);
-        $paramsEmoney = array(
-            'customerEmail' => $arr["email"],
-            'customerName' => $arr["customerName"],
-            'phone' => $arr["phoneNumber"],
-            'country' => $arr["country"],
-            'invoiceNumber' => $invoiceNumber,
-            'amount' => $arr["amount"],
-            'lineItems' => $order_data,
-            'urlFail' => 'https://www.google.com',
-            'callbackUrl' => 'https://www.doku.com',
-            'expiredTime' => $arr["expiredTime"],
-            'clientId' => $arr["clientId"],
-            'checkSum' => $checkSum,
-            'ovoId' => $ovoId,
-            'notifyUrl' => 'https://www.doku.com',
-            'channel' => $arr["channel"]
-        );
-
-        $dokuClient = new DOKU\Client;
-
-        // Setup Config
-        $dokuClient->setClientID($arr["clientId"]);
-        $dokuClient->setSharedKey($arr["sharedKey"]);
-        $dokuClient->isProduction(false); // Sandbox environment. For example project only.
-
-        // Generate VA based on channel chosen
-        if ($arr["channel"] == "dokuva") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsVa, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateDokuVa($paramsVa);
-        } else if ($arr["channel"] == "bankmandiriva") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsVa, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateMandiriVa($paramsVa);
-        } else if ($arr["channel"] == "bcava") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsVa, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateBcaVa($paramsVa);
-        } else if ($arr["channel"] == "bsiva") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsVa, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateBsiVa($paramsVa);
-        } else if ($arr["channel"] == "briva") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsVa, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateBriVa($paramsVa);
-        } else if ($arr["channel"] == "creditcard") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsCc, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateCreditCard($paramsCc);
-        } else if ($arr["channel"] == "shopeepay") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsEmoney, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateShopeePay($paramsEmoney);
-        } else if ($arr["channel"] == "ovo") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsEmoney, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateOvo($paramsEmoney);
-        } else if ($arr["channel"] == "dw") {
-            doku_log("Params Request ", 'PHP-Library Request : ' . json_encode($paramsEmoney, JSON_PRETTY_PRINT), $arr["channel"]);
-            $obj_response = $dokuClient->generateDokuWallet($paramsEmoney);
-        }
-
-        doku_log("Data Responses ", 'PHP-Library Response : ' . json_encode($obj_response, JSON_PRETTY_PRINT), $arr["channel"]);
-
-        if (isset($obj_response) && !isset($obj_response['error'])) {
-            echo json_encode($obj_response);
-            die;
-        } else {
-            http_response_code(404);
-            die;
-        }
+        // dd($Isisalddos);
+        return response()->json(['data' => $createInvoice['invoice_url']]);
     }
 
-
-    function doku_log($class, $log_msg, $invoice_number = '')
+    public function webhook(Request $request)
     {
-        $log_filename = "doku_log";
-        $log_header = date(DATE_ATOM, time()) . ' ' . 'Data ' . '---> ' . $invoice_number . " : ";
-        if (!file_exists($log_filename)) {
-            // create directory/folder uploads.
-            mkdir($log_filename, 0777, true);
+        // Verifikasi tanda tangan notifikasi
+        $signature = $request->header('x-xendit-signature');
+        $isValid = Xendit::validSignature($request->getContent(), $signature);
+        if ($isValid) {
+            // Proses notifikasi pembayaran di sini
+            // Misalnya, tandai pembayaran sebagai selesai
+            // atau mengirim email konfirmasi kepada pelanggan
+        } else {
+            // Tanda tangan tidak valid, abaikan notifikasi
         }
-        $log_file_data = $log_filename . '/log_' . date('d-M-Y') . '.log';
-        // if you don't add `FILE_APPEND`, the file will be erased each time you add a log
-        file_put_contents($log_file_data, $log_header . $log_msg . "\n", FILE_APPEND);
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\User\SaldoController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,18 +19,20 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //API route for register new user
-Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
+// Route::post('/register', [App\Http\Controllers\API\AuthController::class, 'register']);
 //API route for login user
-Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
+// Route::post('/login', [App\Http\Controllers\API\AuthController::class, 'login']);
 
 //Protecting Routes
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', function(Request $request) {
-        return auth()->user();
-    });
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+//     Route::get('/profile', function (Request $request) {
+//         return auth()->user();
+//     });
 
-    // Route::resource('programs', App\Http\Controllers\API\ProgramController::class);
+//     // Route::resource('programs', App\Http\Controllers\API\ProgramController::class);
 
-    // API route for logout user
-    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
-});
+//     // API route for logout user
+//     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+// });
+
+Route::post('/checkout', [SaldoController::class, 'checkout']);

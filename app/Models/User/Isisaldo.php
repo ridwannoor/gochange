@@ -6,23 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Isisaldo extends Model
 {
+    protected $table = 'isisaldos';
     protected $fillable = [
         'no_invoice',
-        'customer_name',
-        'customer_phone',
+        'checkout_link',
+        'external_id',
         'customer_email',
         'total',
-        'payment_status',
-        'payment_date',
-        'payment_channel',
-        'payment_approval_code',
-        'payment_session_id',
+        'status',
         'usd',
         'idr',
         // 'email',
         'jenissaldo_id',
         'user_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($isisaldo) {
+            if (is_null($isisaldo->user_id)) {
+                $isisaldo->user_id = auth()->user()->id;
+            }
+        });
+    }
+
     public function jenissaldo()
     {
         return $this->belongsTo('App\Models\User\Jenissaldo');
@@ -36,16 +45,5 @@ class Isisaldo extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
-    }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($saldo) {
-            if (is_null($saldo->user_id)) {
-                $saldo->user_id = auth()->user()->id;
-            }
-        });
     }
 }

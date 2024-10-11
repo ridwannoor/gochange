@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-$namespace = '\crocodicstudio\dokularavel\Controllers';
+use Illuminate\Support\Facades\Auth;
+// $namespace = '\crocodicstudio\dokularavel\Controllers';
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,7 +48,7 @@ Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 Route::get('/saldo', 'User\SaldoController@saldo')->name('saldo');
 Route::get('/vcc', 'User\SaldoController@vcc')->name('vcc');
 Route::get('/riwayat', 'User\SaldoController@riwayat')->name('riwayat');
-Route::get('/payment', 'User\SaldoController@checkout')->name('payment');
+// Route::post('/saldo/payment', 'User\SaldoController@checkout')->name('payment');
 
 // Route::get('/login', )
 // Route::get('/login', 'Auth\LoginController')->name('login');
