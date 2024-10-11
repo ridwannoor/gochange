@@ -12,7 +12,7 @@ class Isisaldo extends Model
         'checkout_link',
         'external_id',
         'customer_email',
-        'total',
+        'jumlah',
         'status',
         'usd',
         'idr',

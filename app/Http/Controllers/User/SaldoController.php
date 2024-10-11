@@ -11,6 +11,7 @@ use App\Models\User\Isisaldo;
 use Illuminate\Support\Str;
 // use crocodicstudio\dokularavel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 // use DOKU;
 use Xendit\Xendit;
 
@@ -70,30 +71,31 @@ class SaldoController extends Controller
         //Simpan ke database
         $Isisalddos = new Isisaldo;
         $Isisalddos->external_id = $params['external_id'];
+        $Isisalddos->no_invoice = (string) Str::uuid();
         $Isisalddos->status = 'Pending';
         $Isisalddos->checkout_link = $createInvoice['invoice_url'];
         $Isisalddos->usd = $request['usd'];
-        // $Isisalddos->idr = $request['idr'];
+        $Isisalddos->jumlah = $request['jumlah'];
+        $Isisalddos->customer_email = $request['customer_email'];
         $Isisalddos->jenissaldo_id = $request['jenissaldo_id'];
         $Isisalddos->user_id = $request['user_id'];
         $Isisalddos->idr = $params['amount'];
         $Isisalddos->save();
 
         // dd($Isisalddos);
-        return response()->json(['data' => $createInvoice['invoice_url']]);
+        return redirect()->to($createInvoice['invoice_url']);
     }
 
     public function webhook(Request $request)
     {
-        // Verifikasi tanda tangan notifikasi
-        $signature = $request->header('x-xendit-signature');
-        $isValid = Xendit::validSignature($request->getContent(), $signature);
-        if ($isValid) {
-            // Proses notifikasi pembayaran di sini
-            // Misalnya, tandai pembayaran sebagai selesai
-            // atau mengirim email konfirmasi kepada pelanggan
-        } else {
-            // Tanda tangan tidak valid, abaikan notifikasi
+        $getInvoice = \Xendit\Invoice::retrieve($request->id);
+        $payments = Isisaldo::where('external_id', $request->external_id)->firstorfail();
+
+        if ($payments->status == 'settled') {
+            return response()->json(['data' => 'Payment already Processed']);
         }
+
+        $payments->status =  strtolower($getInvoice['status']);
+        $payments->save();
     }
 }

@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                  {{-- <a href="{{ $data }}" class="btn btn-primary">Bayar Sekarang</a> --}}
-                             <button type="submit" class="btn btn-success btn-block text-white">Purchase</button>
+                             <button type="submit" class="btn btn-success btn-block text-white">Lanjut Pembayaran</button>
                             </form> 
                         </div>
                     </div>

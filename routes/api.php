@@ -36,3 +36,4 @@ use App\Http\Controllers\User\SaldoController;
 // });
 
 Route::post('/checkout', [SaldoController::class, 'checkout']);
+Route::post('/checkout/webhook/xendit', [SaldoController::class, 'webhook']);
